@@ -14,7 +14,7 @@ collection rather than reuse its record only has to put the file back where the 
 | --- | ---: | --- | --- |
 | `fw2` | 1,076,802,037 |  | — |
 | `wiki:tl` | 14,490,411 |  | — |
-| `ia` | 3,717,574 | Internet Archive Tagalog books — literature, and the register a newspaper never reaches | [archive-tl](https://archive.org/search?query=mediatype%3Atexts+AND+language%3A%22Tagalog%22) |
+| `ia` | 3,721,582 | Internet Archive Tagalog books — literature, and the register a newspaper never reaches | [archive-tl](https://archive.org/search?query=mediatype%3Atexts+AND+language%3A%22Tagalog%22) |
 | `gut` | 863,684 |  | — |
 | `ebible:tglulb` | 620,499 |  | — |
 | `tat` | 471,892 |  | — |

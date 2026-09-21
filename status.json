@@ -2,7 +2,7 @@
   "language": "tl",
   "built": "2026-09-21",
   "candidates": 23306,
-  "shipped": 12575,
+  "shipped": 12579,
   "ships": true,
   "decided": "2026-09-21",
   "why": "Blessed by the operator on 2026-09-21, in the first cut of seven.",
@@ -29,71 +29,71 @@
     {
       "families": 3,
       "added": "internetarchive",
-      "kept": 11343,
-      "share": 0.486699,
-      "gained": 11343
+      "kept": 11352,
+      "share": 0.487085,
+      "gained": 11352
     },
     {
       "families": 4,
       "added": "gutenberg",
-      "kept": 11961,
-      "share": 0.513215,
-      "gained": 618
+      "kept": 11969,
+      "share": 0.513559,
+      "gained": 617
     },
     {
       "families": 5,
       "added": "tatoeba",
-      "kept": 12425,
-      "share": 0.533125,
-      "gained": 464
+      "kept": 12430,
+      "share": 0.533339,
+      "gained": 461
     },
     {
       "families": 6,
       "added": "ebible",
-      "kept": 12506,
-      "share": 0.5366,
-      "gained": 81
+      "kept": 12510,
+      "share": 0.536772,
+      "gained": 80
     },
     {
       "families": 7,
       "added": "saksingayon.com",
-      "kept": 12544,
-      "share": 0.53823,
+      "kept": 12548,
+      "share": 0.538402,
       "gained": 38
     },
     {
       "families": 8,
       "added": "tribune.net.ph",
-      "kept": 12561,
-      "share": 0.53896,
+      "kept": 12565,
+      "share": 0.539132,
       "gained": 17
     },
     {
       "families": 9,
       "added": "rappler.com",
-      "kept": 12567,
-      "share": 0.539217,
+      "kept": 12571,
+      "share": 0.539389,
       "gained": 6
     },
     {
       "families": 10,
       "added": "gmanetwork.com",
-      "kept": 12572,
-      "share": 0.539432,
+      "kept": 12576,
+      "share": 0.539604,
       "gained": 5
     },
     {
       "families": 11,
       "added": "abante.com.ph",
-      "kept": 12575,
-      "share": 0.539561,
+      "kept": 12579,
+      "share": 0.539732,
       "gained": 3
     },
     {
       "families": 12,
       "added": "inquirer.net",
-      "kept": 12575,
-      "share": 0.539561,
+      "kept": 12579,
+      "share": 0.539732,
       "gained": 0
     }
   ]
