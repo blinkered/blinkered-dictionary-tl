@@ -11,47 +11,61 @@
  * leaves no room for a word one of them happens to miss. FineWeb-2 is the fourth.
  */
 
-import { createReadStream, readFileSync, readdirSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import {
   fileDocuments,
   fineweb2Documents,
   gutenbergBody,
+  harvestDocuments,
   tatoebaDocuments,
   verseDocuments,
   wikiDocuments,
 } from '@blinkered/attestation'
 
+export const LANGUAGE = 'tl'
+
 const CACHE = new URL('.cache/raw/', import.meta.url).pathname
 
-export const SOURCES = [
+const ALL = [
   {
-    id: 'tlwiki',
+    id: 'wiki:tl',
     what: 'Tagalog Wikipedia, 49,484 articles',
+    needs: `${CACHE}tlwiki.xml.bz2`,
     documents: () => wikiDocuments(`${CACHE}tlwiki.xml.bz2`),
   },
   {
-    id: 'tlwikisource',
-    what: 'Tagalog Wikisource — same family as the above, so it corroborates rather than counts',
+    id: 'wikisource:tl',
+    what: 'Tagalog Wikisource — same Wikimedia family, so it corroborates rather than counts',
+    needs: `${CACHE}tlwikisource.xml.bz2`,
     documents: () => wikiDocuments(`${CACHE}tlwikisource.xml.bz2`),
   },
   {
     id: 'fw2',
+    // Where it came from, so a half-finished download is caught before it is read.
+    from: 'https://huggingface.co/datasets/HuggingFaceFW/fineweb-2/resolve/main/data/fil_Latn/train/000_00000.parquet',
     what: 'FineWeb-2 fil_Latn, modern Filipino web prose, each document citing its own URL',
+    needs: `${CACHE}fineweb2-fil.parquet`,
     documents: () => fineweb2Documents(`${CACHE}fineweb2-fil.parquet`),
   },
   {
     id: 'tat',
+    from: 'https://downloads.tatoeba.org/exports/per_language/tgl/tgl_sentences.tsv.bz2',
     what: 'Tatoeba Tagalog, 79,092 sentences',
+    needs: `${CACHE}tgl_sentences.tsv`,
     documents: () => tatoebaDocuments(`${CACHE}tgl_sentences.tsv`),
   },
   {
-    id: 'ebibletl',
+    id: 'ebible:tglulb',
+    from: 'https://ebible.org/Scriptures/tglulb_vpl.zip',
     what: 'Tagalog Unlocked Literal Bible — a family nothing else here belongs to',
+    needs: `${CACHE}ebible-tl/tglulb_vpl.txt`,
     documents: () => verseDocuments(`${CACHE}ebible-tl/tglulb_vpl.txt`),
   },
   {
     id: 'gut',
+    from: 'https://www.gutenberg.org/cache/epub/feeds/pg_catalog.csv',
     what: 'Project Gutenberg Tagalog, 57 books',
+    needs: `${CACHE}gutenberg-tl`,
     documents: () => {
       const dir = `${CACHE}gutenberg-tl`
       const books = readdirSync(dir)
@@ -61,6 +75,39 @@ export const SOURCES = [
     },
   },
 ]
+
+export const SOURCES = ALL.filter((source) => {
+  if (existsSync(source.needs)) return true
+  process.stderr.write(`  (skipping ${source.id}: ${source.needs} is not in .cache/raw)\n`)
+  return false
+})
+
+/**
+ * Filipino publishers, each its own family.
+ *
+ * **Chosen for the language they publish in, not their circulation.** A harvest attests whatever
+ * text it fetches, and it has no idea what language that text is in — so a Philippine site that
+ * publishes mostly in English would attest English words against Tagalog candidates, and the two
+ * lists overlap enough that nobody would notice. These are the papers, broadcasters and agencies
+ * that write in Filipino: the tabloids, the Tagalog editions of the broadsheets, the government's
+ * own Filipino-language service, and the language commission itself.
+ */
+export const DOMAINS = [
+  // Tagalog-language dailies and tabloids
+  'abante.com.ph', 'remate.ph', 'bulgar.com.ph', 'balita.net.ph', 'pilipinostarngayon.com',
+  'hataw.com.ph', 'saksingayon.com', 'ngayon.com.ph',
+  // Broadsheets and broadcasters with Filipino desks
+  'inquirer.net', 'gmanetwork.com', 'abs-cbn.com', 'rappler.com', 'untvweb.com',
+  'tribune.net.ph', 'journal.com.ph', 'manilatoday.net',
+  // Government, which publishes in Filipino by law, and the language commission itself
+  'pia.gov.ph', 'kwf.gov.ph', 'officialgazette.gov.ph', 'senate.gov.ph',
+  // Literature and the left press, for a register the dailies do not reach
+  'panitikan.ph', 'pinoyweekly.org', 'bulatlat.com',
+]
+
+export const HARVEST = existsSync(new URL('searched.tsv', import.meta.url).pathname)
+  ? () => harvestDocuments(new URL('searched.tsv', import.meta.url).pathname)
+  : undefined
 
 /** Carried over from Blinkered's calibration; must be re-measured before anything ships. */
 export const COMMON_CUT = 3_540
