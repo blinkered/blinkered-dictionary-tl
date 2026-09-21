@@ -8,9 +8,9 @@ the curve a careful builder would get, not the order this repository happens to 
 The first two families keep nothing, which is not padding — it is the shape of a rule that needs
 three independent sources.
 
-Candidates: 23,306. Shipped: 9,716.
+Candidates: 23,306. Shipped: 12,573.
 
-Of 11 families, **10 can be checked by fetching** —
+Of 12 families, **11 can be checked by fetching** —
 a stable identifier or a page we fetched ourselves. The other 1 are crawls
 somebody else made, whose locators record where they found the sentence; the document that holds
 it is their published corpus, not the web.
@@ -19,14 +19,15 @@ it is their published corpus, not the web.
 | --- | --- | --- | --- | --- |
 | 1 | `commoncrawl` | 0 | 0.0% | — |
 | 2 | `wikimedia` | 0 | 0.0% | — |
-| 3 | `gutenberg` | 6,513 | 27.9% | +6,513 |
-| 4 | `tatoeba` | 8,860 | 38.0% | +2,347 |
-| 5 | `ebible` | 9,247 | 39.7% | +387 |
-| 6 | `saksingayon.com` | 9,536 | 40.9% | +289 |
-| 7 | `tribune.net.ph` | 9,648 | 41.4% | +112 |
-| 8 | `rappler.com` | 9,693 | 41.6% | +45 |
-| 9 | `gmanetwork.com` | 9,705 | 41.6% | +12 |
-| 10 | `abante.com.ph` | 9,715 | 41.7% | +10 |
-| 11 | `inquirer.net` | 9,716 | 41.7% | +1 |
+| 3 | `internetarchive` | 11,341 | 48.7% | +11,341 |
+| 4 | `gutenberg` | 11,959 | 51.3% | +618 |
+| 5 | `tatoeba` | 12,423 | 53.3% | +464 |
+| 6 | `ebible` | 12,504 | 53.7% | +81 |
+| 7 | `saksingayon.com` | 12,542 | 53.8% | +38 |
+| 8 | `tribune.net.ph` | 12,559 | 53.9% | +17 |
+| 9 | `rappler.com` | 12,565 | 53.9% | +6 |
+| 10 | `gmanetwork.com` | 12,570 | 53.9% | +5 |
+| 11 | `abante.com.ph` | 12,573 | 53.9% | +3 |
+| 12 | `inquirer.net` | 12,573 | 53.9% | — |
 
-**Diminishing returns from family 6** (`saksingayon.com`, +289), where a family first added less than a twentieth of what the best one did.
+**Diminishing returns from family 5** (`tatoeba`, +464), where a family first added less than a twentieth of what the best one did.

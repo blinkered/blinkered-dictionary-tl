@@ -12,12 +12,13 @@ collection rather than reuse its record only has to put the file back where the 
 
 | collection | tokens | what it is | where it came from |
 | --- | ---: | --- | --- |
-| `fw2` | 1,076,802,037 | FineWeb-2 fil_Latn, modern Filipino web prose, each document citing its own URL | [fineweb2-fil.parquet](https://huggingface.co/datasets/HuggingFaceFW/fineweb-2/resolve/main/data/fil_Latn/train/000_00000.parquet) |
-| `wiki:tl` | 14,490,411 | Tagalog Wikipedia, 49,484 articles | [tlwiki.xml.bz2](https://dumps.wikimedia.org/tlwiki/latest/tlwiki-latest-pages-articles.xml.bz2) |
-| `gut` | 863,684 | Project Gutenberg Tagalog, 57 books | [gutenberg-tl](https://www.gutenberg.org/cache/epub/feeds/pg_catalog.csv) |
-| `ebible:tglulb` | 620,499 | Tagalog Unlocked Literal Bible — a family nothing else here belongs to | [tglulb_vpl.txt](https://ebible.org/Scriptures/tglulb_vpl.zip) |
-| `tat` | 471,892 | Tatoeba Tagalog, 79,092 sentences | [tgl_sentences.tsv](https://downloads.tatoeba.org/exports/per_language/tgl/tgl_sentences.tsv.bz2) |
-| `wikisource:tl` | 293,780 | Tagalog Wikisource — same Wikimedia family, so it corroborates rather than counts | [tlwikisource.xml.bz2](https://dumps.wikimedia.org/tlwikisource/latest/tlwikisource-latest-pages-articles.xml.bz2) |
+| `fw2` | 1,076,802,037 |  | — |
+| `wiki:tl` | 14,490,411 |  | — |
+| `ia` | 3,715,126 | Internet Archive Tagalog books — literature, and the register a newspaper never reaches | [archive-tl](https://archive.org/search?query=mediatype%3Atexts+AND+language%3A%22Tagalog%22) |
+| `gut` | 863,684 |  | — |
+| `ebible:tglulb` | 620,499 |  | — |
+| `tat` | 471,892 |  | — |
+| `wikisource:tl` | 293,780 |  | — |
 | `web:saksingayon.com` | 86,694 |  | fetched from `saksingayon.com`, recorded in `searched.tsv` |
 | `web:rappler.com` | 62,762 |  | fetched from `rappler.com`, recorded in `searched.tsv` |
 | `web:tribune.net.ph` | 49,204 |  | fetched from `tribune.net.ph`, recorded in `searched.tsv` |
