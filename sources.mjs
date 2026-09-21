@@ -74,6 +74,43 @@ const ALL = [
       return fileDocuments(books, async (path) => gutenbergBody(readFileSync(path, 'utf8')))
     },
   },
+  {
+    id: 'ia',
+    // Scanned books are OCR, and OCR fails in a way that looks like text. Clean Gutenberg scores
+    // a median 52% known words and never below 36%; the worst of these scored 1%, an English
+    // book read as Cyrillic. Below this floor a book is not legible enough to attest anything.
+    // It also throws out books in the wrong language whole, which matters more here than
+    // anywhere: `booksbylanguage_tagalog` holds 227 items, so the shelf had to be gathered by
+    // language field instead, and that field is what an uploader typed.
+    legible: 0.35,
+    what: 'Internet Archive Tagalog books — literature, and the register a newspaper never reaches',
+    needs: `${CACHE}archive-tl`,
+    from: 'https://archive.org/search?query=mediatype%3Atexts+AND+language%3A%22Tagalog%22',
+    documents: () => {
+      const dir = `${CACHE}archive-tl`
+      // A locator names the text, not the item: the catalogue page holds no word of the book.
+      // `files.tsv` maps an item to the file we read; a book with no recorded name is skipped
+      // rather than cited at a page that cannot support it.
+      const named = new Map(
+        readFileSync(`${dir}/files.tsv`, 'utf8')
+          .split('\n')
+          .filter(Boolean)
+          .map((line) => line.split('\t')),
+      )
+      const books = readdirSync(dir)
+        .filter((file) => file.endsWith('.txt'))
+        .map((file) => file.replace('.txt', ''))
+        .filter((id) => named.has(id))
+        // The filename is percent-encoded: two thirds of them contain spaces, and a locator with
+        // a space in it would split into two locators, because the evidence format spends spaces
+        // as separators. Encoding is also what the URL needs.
+        .map((id) => ({
+          locator: `${id}/${encodeURIComponent(named.get(id))}`,
+          path: `${dir}/${id}.txt`,
+        }))
+      return fileDocuments(books, async (path) => readFileSync(path, 'utf8'))
+    },
+  },
 ]
 
 export const SOURCES = ALL.filter((source) => {
